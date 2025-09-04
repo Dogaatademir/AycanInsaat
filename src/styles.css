@@ -1,0 +1,223 @@
+:root{
+  /* ——— brand ——— */
+  --brand:#2B304B;            /* Aycan mavisi (koyu lacivert) */
+  --brand-600:#262a42;        /* hover için koyulaştırılmış */
+  --brand-700:#1f2437;
+  --accent:#99968E;           /* nötr/ikincil ton */
+  --danger:#BC0202;           /* kurumsal kırmızı */
+
+  /* ——— base ——— */
+  --bg:#F6F7F9;
+  --panel:#ffffff;
+  --text:#1a1d21;
+  --muted:var(--accent);
+  --border:#E6E8ED;
+
+  /* ——— aliases ——— */
+  --primary:var(--brand);
+  --primary-600:var(--brand-600);
+
+  /* ——— cosmetics ——— */
+  --radius:12px;
+  --shadow:0 4px 16px rgba(0,0,0,.06);
+  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:var(--font);line-height:1.45;
+}
+a{color:var(--primary);text-decoration:none}
+.container{display:grid;grid-template-columns:260px 1fr;min-height:100%}
+
+/* ================= Sidebar (premium görünüm) ================= */
+.sidebar{
+  position: sticky; top: 0; height: 100vh; overflow: auto;
+  background: linear-gradient(180deg, #fff 0%, #f9fafc 100%);
+  border-right:1px solid var(--border);
+  box-shadow: inset -1px 0 0 rgba(0,0,0,.02);
+}
+
+.brand{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 16px 14px;
+  color:var(--primary);
+  border-bottom:1px solid var(--border);
+}
+.brand .logo{
+  width:36px;height:36px;border-radius:12px;
+  background:var(--primary);
+  color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 16px rgba(43,48,75,.25), inset 0 0 0 2px rgba(255,255,255,.18);
+  letter-spacing:.4px;
+}
+.brand .brand-name{
+  font-weight:800;letter-spacing:.2px;color:var(--primary);
+  line-height:1.1;
+}
+
+.nav{display:flex;flex-direction:column;gap:6px;padding:12px}
+.nav .section-title{
+  font-size:11px;letter-spacing:.4px;text-transform:uppercase;
+  color:var(--muted);padding:10px 10px 4px;
+}
+.nav button{
+  display:flex;align-items:center;gap:10px;
+  text-align:left;padding:10px 12px;border-radius:12px;border:1px solid transparent;background:transparent;
+  font-weight:700; /* tüm butonlar bold */
+  color:var(--text);cursor:pointer;
+  transition:background .18s ease, border-color .18s ease, box-shadow .18s ease, transform .03s ease;
+  position:relative;
+}
+.nav button .icon{
+  width:28px;height:28px;border-radius:10px;
+  background:#f1f3f6;display:flex;align-items:center;justify-content:center;
+  font-size:14px;line-height:1;
+}
+.nav button .label{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav button:hover:not(.active){ background:#f6f8fb;border-color:var(--border); }
+
+/* Active görünüm: degrade + sol vurgu */
+.nav button.active{
+  background:linear-gradient(135deg, var(--primary) 0%, var(--brand-700) 100%);
+  color:#fff;border-color:transparent;
+  box-shadow:0 8px 18px rgba(43,48,75,.25);
+  font-weight:700; /* aktifken de aynı bold */
+}
+.nav button.active .icon{ background:rgba(255,255,255,.18);color:#fff; }
+.nav button.active::before{
+  content:"";position:absolute;left:-8px;top:8px;bottom:8px;width:4px;border-radius:2px;
+  background:var(--primary);box-shadow:0 0 0 3px rgba(43,48,75,.12);
+}
+
+/* Alt bilgi alanı (opsiyonel) */
+.sidebar .aside-footer{
+  margin-top:auto;padding:12px 14px;color:var(--muted);font-size:12px;
+  border-top:1px solid var(--border);
+}
+
+/* ================= Header & Content ================= */
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 18px;border-bottom:1px solid var(--border);background:var(--panel);
+  position: sticky; top: 0; z-index: 10;
+}
+.content{
+  display:flex;flex-direction:column;height:100vh;overflow:hidden;
+}
+.main{padding:18px;flex:1;overflow:auto}
+
+/* ================= Primitives ================= */
+.card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px}
+.row{display:grid;gap:10px}
+.row.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.row.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.row.resp{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+
+/* ================= Inputs ================= */
+.input, .select, .date, .textarea{
+  width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:#fff;outline:none;
+}
+.input:focus, .select:focus, .date:focus, .textarea:focus{border-color:var(--primary)}
+
+/* Native select'i şık sarmalayıcıyla */
+.select-wrap{
+  position:relative; display:flex; align-items:center; width:100%;
+  border:1px solid var(--border); border-radius:var(--radius);
+  background:linear-gradient(180deg, #fff, #f6f8fb);
+  box-shadow:var(--shadow); transition:border-color .15s, box-shadow .15s, background .15s;
+}
+.select-wrap:hover{ border-color:#d6dae3; background:linear-gradient(180deg, #fff, #f3f6fb); }
+.select-wrap:focus-within{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(43,48,75,.15), var(--shadow);
+}
+.select-wrap .select{
+  appearance:none; -webkit-appearance:none; -moz-appearance:none;
+  border:0; background:transparent; outline:none; width:100%;
+  padding:10px 40px 10px 14px; border-radius:var(--radius);
+  color:var(--text); font:inherit; line-height:1.2;
+}
+.select-wrap .select:disabled{ color:#9aa3b2; cursor:not-allowed; }
+.select-wrap::after{
+  content:""; position:absolute; right:12px; width:10px; height:10px; pointer-events:none;
+  border-right:2px solid #475569; border-bottom:2px solid #475569; transform:rotate(45deg);
+  opacity:.85;
+}
+.select-wrap .prefix{ position:absolute; left:12px; font-size:14px; opacity:.9; pointer-events:none; }
+.select-wrap.has-prefix .select{ padding-left:36px; }
+.select-wrap.sm .select{ padding:8px 36px 8px 12px; }
+.select-wrap.lg .select{ padding:12px 44px 12px 16px; }
+@media (prefers-contrast: more){
+  .select-wrap:focus-within{ box-shadow:0 0 0 3px rgba(43,48,75,.25), var(--shadow); }
+}
+
+/* ================= Buttons ================= */
+.btn{
+  padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:#fff;cursor:pointer;font-weight:600;
+  transition:background .15s ease, transform .03s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}
+.btn.primary:hover{background:var(--primary-600)}
+.btn.secondary{background:transparent;border-color:var(--primary);color:var(--primary)}
+.btn.secondary:hover{background:#eef2ff33}
+.btn.ghost{background:transparent}
+.btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+
+/* ================= Table ================= */
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{padding:10px;border-top:1px solid var(--border)}
+.table th{font-size:12px;color:var(--muted);font-weight:700}
+
+/* ================= Empty/Helper ================= */
+.empty{padding:12px;color:var(--muted)}
+.helper{font-size:12px;color:var(--muted)}
+
+/* ================= Sayfa scroll davranışı ================= */
+html, body, #root { height: 100%; }
+body { overflow: hidden; }       /* Sadece içerik kısmı kayar */
+.container { height: 100vh; }
+
+/* Varsayılan: placeholder'ı gri göster */
+.select:invalid {
+  color: var(--muted);
+}
+.select option[value=""] {
+  color: var(--muted);
+}
+/* Değer seçildiğinde normal metin rengi */
+.select:not(:invalid) {
+  color: var(--text);
+}
+
+/* ——— YENİ: Bazı select'lerde placeholder da normal metin rengi olsun ——— */
+.select.no-muted-placeholder:invalid {
+  color: var(--text);
+}
+.select.no-muted-placeholder option[value=""]{
+  color: var(--text);
+  opacity: 1;
+}
+/* Safari & bazı tarayıcılar için disabled option rengi düzeltme */
+select.select option[disabled]{
+  color: inherit;
+  opacity: 1;
+}
+
+/* ================== EKLE BUTONU ÖZEL DAVRANIŞI ================== */
+.field-actions{
+  display:flex;
+  justify-content:flex-end;
+  width:100%;
+}
+.btn-wide{
+  width:min(100%, 400px);
+}
+@media (max-width: 768px){
+  .btn-wide{ width:100%; }
+}
+

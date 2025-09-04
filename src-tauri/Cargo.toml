@@ -1,0 +1,28 @@
+[package]
+name = "app"
+version = "0.1.0"
+description = "A Tauri App"
+authors = ["you"]
+license = ""
+repository = ""
+edition = "2021"
+rust-version = "1.77.2"
+
+[lib]
+name = "app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+# SORUNU ÇÖZÜYOR: 2.x'e izin ver veya sabit 2.4.0 kullan
+tauri-build = { version = "2", features = [] }
+# alternatif: tauri-build = { version = "2.4.0", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["devtools"] }
+tauri-plugin-http = "2"
+tauri-plugin-sql = { version = "2.3.0", features = ["sqlite"] }
+tauri-plugin-log = "2"
+
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+log = "0.4"

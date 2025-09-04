@@ -1,0 +1,21 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "http-remote",
+  "description": "TCMB ve exchangerate.host için HTTP izinleri",
+  "windows": ["main"],
+  "permissions": [
+    "http:allow-fetch",
+    "http:allow-fetch-cancel",
+    "http:allow-fetch-read-body",
+    "http:allow-fetch-send",
+    {
+      "identifier": "http:allow-fetch",
+      "allow": [
+        { "url": "https://www.tcmb.gov.tr/*" },
+        { "url": "https://tcmb.gov.tr/*" },
+        { "url": "https://api.exchangerate.host/*" },
+        { "url": "https://exchangerate.host/*" }
+      ]
+    }
+  ]
+}

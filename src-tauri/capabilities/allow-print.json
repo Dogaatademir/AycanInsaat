@@ -1,0 +1,9 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "allow-print",
+  "description": "Allow window.print() on all windows",
+  "windows": ["*"],
+  "permissions": [
+    "core:webview:allow-print"
+  ]
+}

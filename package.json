@@ -1,0 +1,41 @@
+{
+  "name": "Aycan İnşaat",
+  "private": true,
+  "version": "1.1.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:frontend": "vite --port 5174 --strictPort",
+    "dev:tauri": "tauri dev -c src-tauri/tauri.conf.json",
+    "dev:all": "concurrently \"npm run dev:frontend\" \"npm run dev:tauri\"",
+    "build": "tsc -b && vite build",
+    "tauri:build": "tauri build -c src-tauri/tauri.conf.json",
+    "lint": "eslint .",
+    "tauri": "tauri",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.56.0",
+    "@tauri-apps/api": "^2.8.0",
+    "@tauri-apps/plugin-http": "^2.5.2",
+    "@tauri-apps/plugin-sql": "^2.3.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "zod": "^4.0.17"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@tauri-apps/cli": "^2.8.4",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^5.0.0",
+    "concurrently": "^9.2.0",
+    "eslint": "^9.33.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.39.1",
+    "vite": "^7.1.2"
+  }
+}
